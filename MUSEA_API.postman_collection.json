@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "23d50100-64cb-4dae-b03c-110ac6af2fb4",
+		"name": "MUSEA_API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authorization-Service",
+			"item": [
+				{
+					"name": "CHECK_TOKEN",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{authentication-service-client-username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{authentication-service-client-password}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{authentication-service-url}}/oauth/check_token?token=Copy Here a Valid Token",
+							"host": [
+								"{{authentication-service-url}}"
+							],
+							"path": [
+								"oauth",
+								"check_token"
+							],
+							"query": [
+								{
+									"key": "token",
+									"value": "Copy Here a Valid Token"
+								}
+							]
+						},
+						"description": "Checks the validity of the token"
+					},
+					"response": []
+				},
+				{
+					"name": "LOGIN",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "{{authentication-service-client-username}}",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "{{authentication-service-client-password}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "hey2@hey.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "heypass2",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{authentication-service-url}}/oauth/token",
+							"host": [
+								"{{authentication-service-url}}"
+							],
+							"path": [
+								"oauth",
+								"token"
+							]
+						},
+						"description": "Checks that the user exists in the DB and if valid returns a valid token"
+					},
+					"response": []
+				},
+				{
+					"name": "SIGN_UP",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"newUserName\",\r\n    \"password\": \"newUserPass\",\r\n    \"email\": \"new@user.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{authentication-service-url}}/signup",
+							"host": [
+								"{{authentication-service-url}}"
+							],
+							"path": [
+								"signup"
+							]
+						},
+						"description": "Introduces a new user to the DB if there exists no user with the same email."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Config-Service",
+			"item": [
+				{
+					"name": "Authorization-dev",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{config-service-password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{config-service-username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{config-service-url}}/authorization/dev",
+							"host": [
+								"{{config-service-url}}"
+							],
+							"path": [
+								"authorization",
+								"dev"
+							]
+						},
+						"description": "Get the configuration for the authorization server (dev environment)"
+					},
+					"response": []
+				},
+				{
+					"name": "Authorization-local",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "{{config-service-password}}",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "{{config-service-username}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{config-service-url}}/authorization/local",
+							"host": [
+								"{{config-service-url}}"
+							],
+							"path": [
+								"authorization",
+								"local"
+							]
+						},
+						"description": "Get the configuration for the authorization server (local environment)"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
